@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-
+//c++ 50% correct
 void internetAddress(string s) {
     // Write your code here
     int flag=1;
@@ -40,5 +40,13 @@ void internetAddress(string s) {
 	    }
 	}
 }
-
+//python 66% correct
+// import re
+// a = input()
+// p = re.compile('(http|ftp)(.+?)ru(.*)')
+// m = p.match(a)
+// ret = '%s://%s.ru'%m.groups()[:2]
+// if m.groups()[2]:
+//   ret += '/' + m.groups()[2]
+// print (ret)
 
