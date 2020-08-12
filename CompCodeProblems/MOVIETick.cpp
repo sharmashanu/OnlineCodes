@@ -25,8 +25,8 @@ class Screen {
         }
 
     
-        void ReserveSeat(vector<string> vec){            
-            int row=stoi(vec[2])-1;
+        void ReserveSeat(vector<string> vec){            //Galti hai yahaan.....backtracking approach nahi lagegi acc to yogi
+            int row=stoi(vec[2]);
             for(int i=3;i<vec.size();i++){     
                 if(seat[row][stoi(vec[i])-1]=='B'){
                     cout<<"failure\n";
@@ -42,7 +42,7 @@ class Screen {
         void GetUnreservedSeats(vector<string> vec){
             int row=stoi(vec[2]);
             for(int i=0;i<col;i++){
-                if(seat[row][i]=='E') cout<<i+1<<" ";
+                if(seat[row][i]!='B') cout<<i+1<<" ";
             }
             cout<<endl;
         }
