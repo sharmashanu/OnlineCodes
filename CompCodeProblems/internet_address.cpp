@@ -1,52 +1,30 @@
-#include<iostream>
-using namespace std;
-//c++ 50% correct
-void internetAddress(string s) {
-    // Write your code here
-    int flag=1;
-	int flag1=1;
-	int flag2=1;
-	for(int i=0;i<s.size();i++){
-	    if(s[i]=='h' && s[i+1]=='t' && s[i+2]=='t' && s[i+3]=='p' && flag1==1){
-	        flag1=0;
-	        flag2=0;
-	        cout<<s[i]<<s[i+1]<<s[i+2]<<s[i+3]<<"://";
-	        i+=3;
-	    }
-	  else if(s[i]=='f' && s[i+1]=='t' && s[i+2]=='p' && flag2==1){
-	        flag2=0;
-	        flag1=0;
-	        cout<<s[i]<<s[i+1]<<s[i+2]<<"://";
-	        i+=2;
-	    }
-	   else if(s[i]=='r' && s[i+1]=='u' && flag==1 && i>4){
-	        flag=0;
-	        cout<<"."<<s[i]<<s[i+1];
-	        if((i+2)<s.size()){
-	            cout<<"/";
-	        }
-	        i+=1;
-	    }
-	    else if(s[0]=='f' && s[i]=='r' && s[i+1]=='u' && flag==1 && i>3 ){
-	        flag=0;
-	        cout<<"."<<s[i]<<s[i+1];
-	        if((i+2)<s.size()){
-	            cout<<"/";
-	        }
-	        i+=1;
-	    }
-	    else{
-	        cout<<s[i];
-	    }
+int getRest(string str,int i)
+{
+	for(int j=i+1;j<str.size()-1;j++)
+	{
+		if(str[j]=='r'&&str[j+1]=='u')
+		return j-1-i;
 	}
+ return -1;
 }
-//python 66% correct
-// import re
-// a = input()
-// p = re.compile('(http|ftp)(.+?)ru(.*)')
-// m = p.match(a)
-// ret = '%s://%s.ru'%m.groups()[:2]
-// if m.groups()[2]:
-//   ret += '/' + m.groups()[2]
-// print (ret)
-
+void internetAddress(string s) {
+    string ptr =s;
+    int starter ,pos;
+    if(s[0]=='h'&&s[1]=='t'&&s[2]=='t'&&s[3]=='p')
+    {
+    	cout<<"http://";
+    	starter =3;
+    	pos = getRest(ptr,3);
+	}
+	else
+	{
+		cout<<"ftp://";
+		starter=2;
+		pos =getRest(ptr,2);
+	}
+	cout<<(ptr.substr(starter+1,pos));
+	cout<<".ru";
+	pos=starter+pos+2;
+	cout<<"/";
+	cout<<ptr.substr(pos+1);
+}
